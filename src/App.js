@@ -1,25 +1,15 @@
+import React from 'react'
+import Body from './components/Body'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import './App.css'
 
-import './App.css';
-import React from 'react';
-import Header from './components/Header';
-import { Outlet } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './components/store/store';
-
-
-function App() {
- 
- 
+export default function App() {
   return (
-    <div className="App">
-      <Provider store={store}>
+    <div className='mx-5 my-1 '>
       <Header/>
-      <Outlet/>
-      </Provider>
-        
-      
+      <Body/>
+      <Footer/>
     </div>
-  );
+  )
 }
-
-export default App;

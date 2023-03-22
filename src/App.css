@@ -1,33 +1,7 @@
-.header{
-  display: flex;
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
 
-}
-.nav-item{
-  list-style-type: none;
-  margin: 10px;
-  font-weight: bold;
-}
-.ecomerceSTore{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.product{
-  width:190px;
-  font-size: 8px;
-  border: 2px solid black;
-  margin:20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-}
-
-.product>img{
-  
-  max-width: 100px;
-  
-}
-body{
-  margin:10px;
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
 }
