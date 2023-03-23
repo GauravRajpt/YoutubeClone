@@ -5,6 +5,7 @@ import '../App.css'
 import profile from '../images/profile.jpg'
 import { useDispatch } from 'react-redux'
 import { isMenuopen } from './Store/MenuSlice'
+import { Link } from 'react-router-dom'
 
 export default function Header() {
     const dispatch= useDispatch();
@@ -18,7 +19,7 @@ export default function Header() {
             <div className='flex items-center cursor-pointer'><img  onClick={()=>handleclick()} className='h-6' src={menuimg} alt="" />
             </div>
             <div className='flex items-center'>
-            <img className="h-12 mx-4 cursor-pointer" src={logo} alt=""/>
+            <Link to="/"><img className="h-12 mx-4 cursor-pointer" src={logo} alt=""/></Link>
             </div>
             </div>
             <div className='flex items-center w-[30%]'>

@@ -1,4 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
+
 
 export default function Videocontainer() {
 
@@ -17,16 +19,18 @@ export default function Videocontainer() {
         }
     
     },[]);
+
+   
   return (
     <div className='flex flex-wrap m-3'>
       { data?.items.map((items)=>{
-        return (<div className='w-52 m-3 cursor-pointer'>
+        return (<Link to="/video"><div className='w-52 m-3 cursor-pointer'>
           <img className="rounded-lg" src={items?.snippet?.thumbnails?.medium?.url} alt=""/>
-          <h2 className='font-Roboto font-medium'>{items?.snippet?.title}</h2>
+          <h2 className='font-Roboto font-medium text-sm'>{items?.snippet?.title.substring(0,50)}{items?.snippet?.title?.length>50?<span>...</span>:null}</h2>
          
           <h2 className='text-sm'>{items?.snippet?.channelTitle}</h2>
            <h3 className='text-sm'>{items?.statistics?.viewCount} views</h3>
-        </div>)
+        </div></Link>)
 })}
     </div>
   )

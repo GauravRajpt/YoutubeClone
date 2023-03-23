@@ -1,21 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './components/Store/store';
+import Body from './components/Body';
+import Videoe from './components/Videoe';
+import Mainsection from './components/Mainsection';
 
 
 
-
+const approuter=createBrowserRouter([
+  {path:"/",
+element:<App/>,
+children:[{
+  path:"/",
+  element:<Mainsection/>
+},
+{
+  path:'/video',
+  element:<Videoe/>
+}]
+}
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <RouterProvider router={approuter}>
     <App/>
+    </RouterProvider>
     </Provider>
    
   </React.StrictMode>
