@@ -5,17 +5,23 @@ import "../App.css";
 import profile from "../images/profile.jpg";
 import { useDispatch } from "react-redux";
 import { isMenuopen } from "./Store/MenuSlice";
-import { Link } from "react-router-dom";
+import { json, Link } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function Header() {
+
+
     const [searchquery, setSearchQuery]= useState("api")
+    const [search, setsearch]= useState("hello")
   const dispatch = useDispatch();
   function handleclick() {
     dispatch(isMenuopen());
   }
-  function getData(){
-    console.log(searchquery);
+ async function getData(){
+    const data= await fetch("http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="+searchquery);
+   const json=  await data.json();
+    console.log(json[1]?.[1])
+    setsearch(json[1])
   }
   useEffect(()=>{
      const timer= setTimeout(() => {
@@ -32,7 +38,7 @@ export default function Header() {
             onClick={() => handleclick()}
             className="h-6"
             src={menuimg}
-            alt=""
+            alt="menu.jpg"
           />
         </div>
         <div className="flex items-center">
@@ -41,13 +47,18 @@ export default function Header() {
           </Link>
         </div>
       </div>
-      <div className="flex items-center w-[30%]">
+      <div className="flex items-center w-[30%] relative">
         <input
           className=" p-2 h-9 rounded-l-full border-gray-300 border-solid border w-[100%]"
           type="text"
           
           onChange={(e)=>setSearchQuery(e.target.value)}
              />
+             <div className="absolute top-12 left-0 bg-white w-[100%] rounded-xl shadow-2xl list-none p-2 ">
+              {search.map((e)=><li key={e} className="hover:bg-gray-100 cursor-pointer">{e}</li>)}
+              
+              
+             </div>
         <svg
           className=" cursor-pointer w-12 border-gray-300 border-solid border rounded-r-full h-9 bg-gray-100"
           xmlns="http://www.w3.org/2000/svg"
