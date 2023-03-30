@@ -6,9 +6,12 @@ const MenuSlice= createSlice({
     reducers:{
         isMenuopen: (state)=>{
           return  state= !state;
-        }
+        },
+        closeMenu:(state=>{
+          return state= false;
+        })
     }
 
 })
-export const {isMenuopen}= MenuSlice.actions;
+export const {isMenuopen, closeMenu}= MenuSlice.actions;
 export default MenuSlice.reducer;

@@ -15,7 +15,7 @@ export default function Videocontainer() {
             const jsonn= await data.json();
             
             setdata(jsonn)
-            console.log(jsonn)
+            
         }
     
     },[]);
@@ -24,7 +24,7 @@ export default function Videocontainer() {
   return (
     <div className='flex flex-wrap m-3'>
       { data?.items.map((items)=>{
-        return (<Link to="/video"><div className='w-52 m-3 cursor-pointer'>
+        return (<Link to={"/video?v="+items.id} key={items.id}><div className='w-52 m-3 cursor-pointer'>
           <img className="rounded-lg" src={items?.snippet?.thumbnails?.medium?.url} alt=""/>
           <h2 className='font-Roboto font-medium text-sm'>{items?.snippet?.title.substring(0,50)}{items?.snippet?.title?.length>50?<span>...</span>:null}</h2>
          
