@@ -3,33 +3,43 @@ import menuimg from "../images/icon.png";
 import logo from "../images/youtube.png";
 import "../App.css";
 import profile from "../images/profile.jpg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isMenuopen } from "./Store/MenuSlice";
-import { json, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { storeCache } from "./Store/SearchSlice";
 
 export default function Header() {
-
-
-    const [searchquery, setSearchQuery]= useState("api")
-    const [search, setsearch]= useState("hello")
+  const [showsuggestions, setshowsuggestions] = useState(false);
+  const [searchquery, setSearchQuery] = useState("");
+  const [search, setsearch] = useState(null);
   const dispatch = useDispatch();
+  const searchstore= useSelector((state)=>state.search);
+  
+  console.log(searchstore)
   function handleclick() {
     dispatch(isMenuopen());
   }
- async function getData(){
-    const data= await fetch("http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="+searchquery);
-   const json=  await data.json();
-    console.log(json[1]?.[1])
-    setsearch(json[1])
+  async function getData() {
+    const data = await fetch(
+      "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" +
+        searchquery
+    );
+    const json = await data.json();
+    console.log(json[1]?.[1]);
+    setsearch(json[1]);
+    dispatch(storeCache({[searchquery]: json[1]}))
   }
-  useEffect(()=>{
-     const timer= setTimeout(() => {
-      getData();
-     },200);
-    
-     return ()=>clearTimeout(timer)
-  },[searchquery]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if(searchquery in Object(searchstore)){
+        setshowsuggestions(searchstore[searchquery])
+      }
+      else getData();
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, [searchquery]);
   return (
     <div className="flex justify-between">
       <div className="flex">
@@ -51,14 +61,22 @@ export default function Header() {
         <input
           className=" p-2 h-9 rounded-l-full border-gray-300 border-solid border w-[100%]"
           type="text"
-          
-          onChange={(e)=>setSearchQuery(e.target.value)}
-             />
-             <div className="absolute top-12 left-0 bg-white w-[100%] rounded-xl shadow-2xl list-none p-2 ">
-              {search.map((e)=><li key={e} className="hover:bg-gray-100 cursor-pointer">{e}</li>)}
-              
-              
-             </div>
+          onFocus={() => setshowsuggestions(true)}
+          onBlur={() => setshowsuggestions(false)}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        {showsuggestions && (
+          <div className="absolute top-12 left-0 bg-white w-[100%] rounded-xl shadow-2xl list-none p-2 ">
+            {search?.map((e) => (
+              <li
+                key={e}
+                className="hover:bg-gray-100 cursor-pointer p-2 rounded-lg"
+              >
+                {e}
+              </li>
+            ))}
+          </div>
+        )}
         <svg
           className=" cursor-pointer w-12 border-gray-300 border-solid border rounded-r-full h-9 bg-gray-100"
           xmlns="http://www.w3.org/2000/svg"
@@ -83,9 +101,9 @@ export default function Header() {
  * settimeout,300ms
  *  getData
  *  - searchquery
- *      - setsearchquery(value); 
- * 
- * 
- * 
- * 
+ *      - setsearchquery(value);
+ *
+ *
+ *
+ *
  */
