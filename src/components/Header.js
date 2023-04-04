@@ -8,6 +8,7 @@ import { isMenuopen } from "./Store/MenuSlice";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { storeCache } from "./Store/SearchSlice";
+import Searchlist from "./Searchlist";
 
 export default function Header() {
   const [showsuggestions, setshowsuggestions] = useState(false);
@@ -16,7 +17,7 @@ export default function Header() {
   const dispatch = useDispatch();
   const searchstore= useSelector((state)=>state.search);
   
-  console.log(searchstore)
+  
   function handleclick() {
     dispatch(isMenuopen());
   }
@@ -40,6 +41,13 @@ export default function Header() {
 
     return () => clearTimeout(timer);
   }, [searchquery]);
+
+ const searchlist= async(e)=>{
+  console.log(e)
+  const data = await fetch('https://youtube.googleapis.com/youtube/v3/search?part=snippet&q='+e+'&key=AIzaSyDKAZyQIg6e-73pKItOV4Yq91GhpYI1Vp4');
+  const json = await data.json();
+  console.log(json)
+  }
   return (
     <div className="flex justify-between">
       <div className="flex">
@@ -69,6 +77,7 @@ export default function Header() {
           <div className="absolute top-12 left-0 bg-white w-[100%] rounded-xl shadow-2xl list-none p-2 ">
             {search?.map((e) => (
               <li
+                onClick={()=>searchlist(e)}
                 key={e}
                 className="hover:bg-gray-100 cursor-pointer p-2 rounded-lg"
               >
