@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { closeMenu } from "./Store/MenuSlice";
+import Comments from "./comments"
 
 export default function Videoe() {
+
+
 
   const dispatch= useDispatch();
   dispatch(closeMenu());
@@ -20,6 +23,7 @@ console.log(searchparam.get("v"))
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
       ></iframe>
+      <Comments />
     </div>
   );
 }
