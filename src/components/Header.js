@@ -8,6 +8,8 @@ import { isMenuopen } from "./Store/MenuSlice";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { storeCache } from "./Store/SearchSlice";
+import Searchlist from "./Searchlist";
+import { searchlistdata } from "./Store/searchlistslice";
 
 
 export default function Header() {
@@ -52,6 +54,8 @@ export default function Header() {
     );
     const json = await data.json();
     console.log(json);
+    dispatch(searchlistdata(json));
+    
   };
 
   function handlesearch(event){
@@ -103,15 +107,16 @@ if(!searchref?.current?.contains(event.target) && !searchinput?.current.contains
             className="absolute top-12 left-0 bg-white w-[100%] rounded-xl shadow-2xl list-none p-2 "
           >
             {search?.map((e) => (
-              <li
+             <Link to="/searchlist" key={e}><li
             
               onFocus={() => setshowsuggestions(true)}
                 onClick={() => searchlist(e)}
-                key={e}
+                
                 className="hover:bg-gray-100 cursor-pointer p-2 rounded-lg"
               >
                 {e}
               </li>
+              </Link> 
             ))}
           </div>
         )}

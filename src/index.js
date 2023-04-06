@@ -9,6 +9,7 @@ import store from './components/Store/store';
 import Body from './components/Body';
 import Videoe from './components/Videoe';
 import Mainsection from './components/Mainsection';
+import Searchlist from './components/Searchlist'
 
 
 
@@ -22,6 +23,10 @@ children:[{
 {
   path:'/video',
   element:<Videoe/>
+},
+{
+  path:'/searchlist',
+  element:<Searchlist/>
 }]
 }
 ])
