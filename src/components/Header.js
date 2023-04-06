@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import menuimg from "../images/icon.png";
 import logo from "../images/youtube.png";
 import "../App.css";
@@ -8,16 +8,17 @@ import { isMenuopen } from "./Store/MenuSlice";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { storeCache } from "./Store/SearchSlice";
-import Searchlist from "./Searchlist";
+
 
 export default function Header() {
   const [showsuggestions, setshowsuggestions] = useState(false);
   const [searchquery, setSearchQuery] = useState("");
   const [search, setsearch] = useState(null);
   const dispatch = useDispatch();
-  const searchstore= useSelector((state)=>state.search);
-  
-  
+  const searchstore = useSelector((state) => state.search);
+  const searchref= useRef();
+  const searchinput=useRef()
+
   function handleclick() {
     dispatch(isMenuopen());
   }
@@ -29,25 +30,44 @@ export default function Header() {
     const json = await data.json();
     console.log(json[1]?.[1]);
     setsearch(json[1]);
-    dispatch(storeCache({[searchquery]: json[1]}))
+    dispatch(storeCache({ [searchquery]: json[1] }));
   }
   useEffect(() => {
     const timer = setTimeout(() => {
-      if(searchquery in Object(searchstore)){
-        setshowsuggestions(searchstore[searchquery])
-      }
-      else getData();
+      if (searchquery in Object(searchstore)) {
+        setsearch(searchstore[searchquery]);
+      } else getData();
     }, 200);
 
     return () => clearTimeout(timer);
   }, [searchquery]);
 
- const searchlist= async(e)=>{
-  console.log(e)
-  const data = await fetch('https://youtube.googleapis.com/youtube/v3/search?part=snippet&q='+e+'&key=AIzaSyDKAZyQIg6e-73pKItOV4Yq91GhpYI1Vp4');
-  const json = await data.json();
-  console.log(json)
+  const searchlist = async (e) => {
+    setshowsuggestions(false)
+    console.log(4);
+    const data = await fetch(
+      "https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=" +
+        e +
+        "&key=AIzaSyDKAZyQIg6e-73pKItOV4Yq91GhpYI1Vp4"
+    );
+    const json = await data.json();
+    console.log(json);
+  };
+
+  function handlesearch(event){
+    
+if(!searchref?.current?.contains(event.target) && !searchinput?.current.contains(event.target)){
+  
+ setshowsuggestions(false);
+}
   }
+  useEffect(()=>{
+    document.addEventListener('click',handlesearch)
+   
+    return ()=>{
+      document.removeEventListener('click',handlesearch)
+    }
+  },[])
   return (
     <div className="flex justify-between">
       <div className="flex">
@@ -65,19 +85,28 @@ export default function Header() {
           </Link>
         </div>
       </div>
-      <div className="flex items-center w-[30%] relative">
+      <div  ref={searchinput}  onFocus={() => setshowsuggestions(true)} className="flex items-center w-[30%] relative">
         <input
           className=" p-2 h-9 rounded-l-full border-gray-300 border-solid border w-[100%]"
           type="text"
-          onFocus={() => setshowsuggestions(true)}
-          onBlur={() => setshowsuggestions(false)}
+          
+    
+          
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         {showsuggestions && (
-          <div className="absolute top-12 left-0 bg-white w-[100%] rounded-xl shadow-2xl list-none p-2 ">
+          <div
+         
+          
+             ref={searchref}
+           
+            className="absolute top-12 left-0 bg-white w-[100%] rounded-xl shadow-2xl list-none p-2 "
+          >
             {search?.map((e) => (
               <li
-                onClick={()=>searchlist(e)}
+            
+              onFocus={() => setshowsuggestions(true)}
+                onClick={() => searchlist(e)}
                 key={e}
                 className="hover:bg-gray-100 cursor-pointer p-2 rounded-lg"
               >
