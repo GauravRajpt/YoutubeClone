@@ -9,24 +9,36 @@ export default function Comments() {
             {
                 name:"akshay",
                 comment:"heheh it's not a big deal .",
+                replies:[{
+                  name:"vikash",
+                  comment:"you are doing great, keep it up"
+                }]
+            },
+            {
+              name:"vishal",
+              comment:"very funny",
             }
         ]
     },
     {
-        name:"gaurav",
-        comment:"can't belive you are still on top .",
+        name:"gautam",
+        comment:"best perform .",
+        replies:[{
+          name:'akshay',
+          comment:'thank you so much'
+        }]
     }
   ]
   
   const Comment=({data})=>{
     const {name, comment, replies}= data;
-    return ( <div className="p-2 font-semibold bg-gray-200">
+    return ( <div className="pl-2 mb-2 font-semibold bg-gray-100">
     <div >{name}</div>
     <div className="font-light">{comment}</div>
     
     {replies? 
-   (<div className="border-l-black border-solid border-2 m-2">
-        <Comment data={replies[0]}/>
+   (<div className="border-l-black border-l-solid border-l-2 ml-3">
+       {replies.map((c)=><Comment data={c}/>)} 
     </div>): null}
     
         

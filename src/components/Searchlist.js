@@ -2,12 +2,21 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 export default function Searchlist() {
-  const searchlist= useSelector((state)=>state.searchlist?.items)
+
+    const searchlist= useSelector((state)=>state?.searchlist?.items)
     console.log(searchlist)
+    if(searchlist){
+      localStorage.setItem('searchdata',JSON.stringify(searchlist));
+     
+    }
+  const data= localStorage.getItem('searchdata')
+  const searchdata= JSON.parse(data);
+  console.log(searchdata)
+    
     
   return (
     <div>
-    {searchlist?.map((e)=>{
+    {searchdata?.map((e)=>{
       return (
         
       <div className='flex w-[90%] col-span-10 m-4 cursor-pointer'>

@@ -6,7 +6,9 @@ const searchlistSlice= createSlice({
     reducers:{
         searchlistdata:(state,action)=>{
             return state= action.payload;
-        }
+        },
+       
+        
     }
 })
 export const {searchlistdata}= searchlistSlice.actions;
