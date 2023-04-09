@@ -45,6 +45,7 @@ export default function Header() {
   }, [searchquery]);
 
   const searchlist = async (e) => {
+    
     setshowsuggestions(false)
     console.log(4);
     const data = await fetch(
@@ -53,7 +54,7 @@ export default function Header() {
         "&key=AIzaSyDKAZyQIg6e-73pKItOV4Yq91GhpYI1Vp4"
     );
     const json = await data.json();
-    console.log(json);
+    
     dispatch(searchlistdata(json));
     
   };
@@ -120,11 +121,15 @@ if(!searchref?.current?.contains(event.target) && !searchinput?.current.contains
             ))}
           </div>
         )}
-        <svg
+       <Link to={"/searchlist"}
+      > 
+      <div onClick={()=>searchlist(searchquery)}><svg
+    
           className=" cursor-pointer w-12 border-gray-300 border-solid border rounded-r-full h-9 bg-gray-100"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
+          
           <g data-name="Layer 2">
             <path
               d="m20.71 19.29-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"
@@ -132,6 +137,8 @@ if(!searchref?.current?.contains(event.target) && !searchinput?.current.contains
             />
           </g>
         </svg>
+        </div>
+        </Link>
       </div>
       <div>
         <img className="h-14 cursor-pointer" src={profile} alt="" />
