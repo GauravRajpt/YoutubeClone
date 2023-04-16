@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { closeMenu } from "./Store/MenuSlice";
-import Comments from "./comments"
+import Comments from "./comments";
+import Livechat from "./Livechat";
 
 export default function Videoe() {
 
@@ -14,7 +15,9 @@ export default function Videoe() {
 console.log(searchparam.get("v"))
   return (
     <div className="col-span-12">
-      <iframe
+     
+     <div className="flex">
+      <div className="w-[900px]"><iframe
         width="900"
         height="450"
         src={"https://www.youtube.com/embed/"+searchparam.get("v")}
@@ -23,6 +26,9 @@ console.log(searchparam.get("v"))
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
       ></iframe>
+      </div>
+      <Livechat />
+      </div> 
       <Comments />
     </div>
   );

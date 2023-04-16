@@ -32,7 +32,7 @@ export default function Comments() {
   
   const Comment=({data})=>{
     const {name, comment, replies}= data;
-    return ( <div className="pl-2 mb-2  font-semibold ">
+    return ( <div className=" mb-2  font-semibold bg-gray-150 rounded-lg ">
       <div className="bg-gray-100 rounded-lg p-1 border-l-black border-l-solid border-l-2" >
     <div >{name}</div>
     <div className="font-light">{comment}</div>
