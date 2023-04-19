@@ -41,7 +41,7 @@ export default function Comments() {
     
     {replies? 
    (<div className=" ml-3  bg-gray-100 rounded-lg">
-       {replies.map((c)=><Comment data={c}/>)} 
+       {replies.map((c,i)=><Comment data={c} key={i}/>)} 
     </div>): null}
     
         

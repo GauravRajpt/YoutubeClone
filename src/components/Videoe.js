@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { closeMenu } from "./Store/MenuSlice";
@@ -22,9 +22,9 @@ console.log(searchparam.get("v"))
         height="450"
         src={"https://www.youtube.com/embed/"+searchparam.get("v")}
         title="YouTube video player"
-        frameborder="0"
+        frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
+        allowFullScreen
       ></iframe>
       </div>
       <Livechat />
