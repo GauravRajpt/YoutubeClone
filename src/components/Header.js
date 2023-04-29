@@ -76,7 +76,7 @@ if(!searchref?.current?.contains(event.target) && !searchinput?.current.contains
   return (
     <div className="flex justify-between">
       <div className="flex">
-        <div className="flex items-center cursor-pointer">
+        <div className="flex items-center cursor-pointer relative">
           <img
             onClick={() => handleclick()}
             className="h-6"

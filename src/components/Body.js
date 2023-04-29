@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom'
 
 export default function Body() {
   return (
-    <div className=' grid grid-flow-col width-[100%]'>
+    <div className=' grid grid-flow-col width-[100%] relative'>
       <SideBar/>
       <Outlet/>
     </div>

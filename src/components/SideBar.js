@@ -8,7 +8,7 @@ export default function SideBar() {
 
     if(menu){
   return (
-    <div className='col-span-1 flex flex-col w-fit '> 
+    <div className='col-span-1 flex flex-col w-fit absolute top-0 left-0 sm:relative bg-white bg-opacity-80 rounded-md sm:bg-opacity-1' > 
         <li className='font-roboto  list-none hover:bg-gray-100 rounded-lg leading-10 inline-block w-[100%] cursor-pointer'><Link to="/">Home</Link></li>
         <li className='font-roboto  list-none hover:bg-gray-100 rounded-lg leading-10 inline-block w-[100%] cursor-pointer'>Shorts</li>
         <li className='font-roboto  list-none hover:bg-gray-100 rounded-lg leading-10 inline-block w-[100%] cursor-pointer '>Subscriptions</li>
