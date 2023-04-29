@@ -16,10 +16,10 @@ console.log(searchparam.get("v"))
   return (
     <div className="col-span-12">
      
-     <div className="flex">
-      <div className="w-[900px]"><iframe
-        width="900"
-        height="450"
+     <div className="sm:flex">
+      <div className="sm:w-[900px] m-3 sm:m-0 "><iframe
+        width="100%"
+        className="sm:h-[450px] h-56"
         src={"https://www.youtube.com/embed/"+searchparam.get("v")}
         title="YouTube video player"
         frameBorder="0"

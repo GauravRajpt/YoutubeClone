@@ -23,12 +23,13 @@ const Livechat=()=>{
         return ()=>clearInterval(i);
     },[])
     return (
-        <div className="flex flex-col">
-        <div className="border border-black w-full h-[450px] overflow-y-scroll mx-2 bg-slate-50 flex flex-col-reverse">
+        <div className="flex flex-col ">
+            <h1 className="font-bold mx-2">Livechat</h1>
+        <div className="border border-black w-full sm:h-[450px] h-[200px] overflow-y-scroll mx-2 my-2 sm:my-0 bg-slate-50 flex flex-col-reverse">
            {chat?.map((e,i)=> <Chatitem name={e?.name} comment={e?.comment} key={i}/>)}
          
            </div>
-             <form  className="w-full border border-black mx-2">
+             <form  className="w-fit border border-black mx-2">
              <input className="  w-80 " type="text" value={livemessage} onChange={(e)=>setLivemessage(e.target.value)}/>
              <button onClick={(e)=>{
                 e.preventDefault();
