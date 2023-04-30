@@ -50,7 +50,7 @@ export default function Comments() {
   }
 
   return (
-    <div className="font-bold">
+    <div className="font-bold mx-1">
       comments:
 
       {

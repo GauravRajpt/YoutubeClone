@@ -9,7 +9,7 @@ export default function App() {
   
 
   return (
-    <div className='mx-5 my-1 '>
+    <div className='sm:mx-5 my-1 overflow-x-hidden'>
       
       <Header/>
       <Body/>

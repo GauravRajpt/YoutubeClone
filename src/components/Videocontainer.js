@@ -27,10 +27,10 @@ export default function Videocontainer() {
         return (<Link to={"/video?v="+items.id} key={items.id} className='w-full sm:w-52 sm:m-3'>
           <div className='w-full sm:w-52 m-0 sm:m-3 cursor-pointer'>
           <img className="w-full rounded-lg" src={items?.snippet?.thumbnails?.medium?.url} alt=""/>
-          <h2 className='font-Roboto font-medium text-sm'>{items?.snippet?.title.substring(0,50)}{items?.snippet?.title?.length>50?<span>...</span>:null}</h2>
+          <h2 className='font-Roboto font-medium text-sm m-1 sm:m-0'>{items?.snippet?.title.substring(0,50)}{items?.snippet?.title?.length>50?<span>...</span>:null}</h2>
          
-          <h2 className='text-sm'>{items?.snippet?.channelTitle}</h2>
-           <h3 className='text-sm'>{items?.statistics?.viewCount} views</h3>
+          <h2 className='text-sm m-1 sm:m-0'>{items?.snippet?.channelTitle}</h2>
+           <h3 className='text-sm m-1 sm:m-0'>{items?.statistics?.viewCount} views</h3>
         </div></Link>)
 })}
     </div>

@@ -79,7 +79,7 @@ if(!searchref?.current?.contains(event.target) && !searchinput?.current.contains
     }
   },[])
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between mx-2 sm:mx-0">
       <div className="flex">
         <div className="flex items-center cursor-pointer relative">
           <img

@@ -23,9 +23,9 @@ const Livechat=()=>{
         return ()=>clearInterval(i);
     },[])
     return (
-        <div className="flex flex-col ">
-            <h1 className="font-bold mx-2">Livechat</h1>
-        <div className="border border-black w-full sm:h-[450px] h-[200px] overflow-y-scroll mx-2 my-2 sm:my-0 bg-slate-50 flex flex-col-reverse">
+        <div className="flex flex-col my-2 sm:my-0">
+            <h1 className="font-bold mx-2 border border-black text-gray-500 border-b-0" >Livechat</h1>
+        <div className="border border-black  sm:h-[450px] h-[200px] overflow-y-scroll  mx-2  sm:my-0 bg-slate-50 flex flex-col-reverse">
            {chat?.map((e,i)=> <Chatitem name={e?.name} comment={e?.comment} key={i}/>)}
          
            </div>
