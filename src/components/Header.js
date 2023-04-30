@@ -4,7 +4,7 @@ import logo from "../images/youtube.png";
 import "../App.css";
 import profile from "../images/profile.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { isMenuopen } from "./Store/MenuSlice";
+import { closeMenu, isMenuopen } from "./Store/MenuSlice";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { storeCache } from "./Store/SearchSlice";
@@ -20,6 +20,11 @@ export default function Header() {
   const searchstore = useSelector((state) => state.search);
   const searchref= useRef();
   const searchinput=useRef()
+
+  if(window.screen.width<=640){
+    dispatch(closeMenu(false))
+  }
+
 
   function handleclick() {
     dispatch(isMenuopen());

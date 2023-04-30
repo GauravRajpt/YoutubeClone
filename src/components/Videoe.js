@@ -8,7 +8,7 @@ import Livechat from "./Livechat";
 export default function Videoe() {
 
 
-
+console.log(window.screen.width)
   const dispatch= useDispatch();
   dispatch(closeMenu());
   const [searchparam]= useSearchParams();
