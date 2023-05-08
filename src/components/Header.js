@@ -110,7 +110,7 @@ if(!searchref?.current?.contains(event.target) && !searchinput?.current.contains
           
              ref={searchref}
            
-            className="absolute top-12 left-0 bg-white w-[100%] rounded-xl shadow-2xl list-none p-2 "
+            className="absolute top-12 left-0 bg-white w-[100%] rounded-xl shadow-2xl list-none p-2 z-10 "
           >
             {search?.map((e) => (
              <Link to="/searchlist" key={e}><li
